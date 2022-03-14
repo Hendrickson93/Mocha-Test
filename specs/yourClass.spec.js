@@ -10,7 +10,7 @@ describe("Test Suite ", function() {
   });
 });
 
-/* // Root level hook
+/*  // Root level hook
 beforeEach(function() {
   console.log("------------ Root Level Hook in yourClass.spec.js");
-}); */
+});  */

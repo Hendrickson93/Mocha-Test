@@ -10,7 +10,7 @@ describe("Dummy Test Suite", function() {
 // Root level hook
 beforeEach(function() {
   console.log("------------------------------------------");
-  console.log("                 TEST CASE                ");
+  console.log("                 UNIT TEST                ");
   console.log("------------------------------------------");
 }); 
 afterEach(function() {

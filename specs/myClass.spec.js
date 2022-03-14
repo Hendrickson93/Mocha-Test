@@ -5,7 +5,7 @@ var chai = require("chai");
 var expect = chai.expect;
 const chaiaspromise = require("chai-as-promised");
 chai.use(chaiaspromise);
-//const nock = require("nock");
+
 
 describe("Test Suite", function() {
   after(function() {
@@ -93,15 +93,17 @@ describe("Test Suite", function() {
 ////////////////////////////// TEST SUITE /////////////////////////////////////
 describe("Test Suite For Stub", function() {
   it("Stub the add() method", function() {
+
     var stub = sinon.stub(myObj, "add");
+
     stub
-      .withArgs(10, 20)
-      .onFirstCall()
-      .returns(100)
-      .onSecondCall()
-      .returns(200);
-    expect(myObj.callAnotherFn(10, 20)).to.be.equal(100);
-    expect(myObj.callAnotherFn(10, 20)).to.be.equal(200);
+      .onFirstCall().returns(500)
+      .onSecondCall().returns(200);
+    
+    
+    console.log("1st Call: ", expect(myObj.callAnotherFn(10, 20)).to.be.equal(500));
+    
+    console.log("2nd Call: ", expect(myObj.callAnotherFn(10, 20)).to.be.equal(200));
   });
 });
 
