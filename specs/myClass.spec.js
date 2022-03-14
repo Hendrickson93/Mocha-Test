@@ -43,7 +43,6 @@ describe("Test Suite", function() {
     console.log("Expect: ", expected);
   });
 
-
   ////////////////////////////////////////////////////////////////////// SPY THE ADD() METHOD
   it("Spy the add() method", function() {
     var spy = sinon.spy(myObj, "add");
@@ -54,10 +53,8 @@ describe("Test Suite", function() {
     //sinon.assert.calledTwice(spy);
     expect(spy.calledOnce).to.be.true;
     expect(spy.calledWith(10, 20)).to.be.true;
-   
     console.log("Result: ", result);
   });
-
 
    /* it("Copy of spy for the add() method", function() {
     // This test will fail in case sinon.restore() is not called
@@ -71,15 +68,15 @@ describe("Test Suite", function() {
     expect(spy.calledWith(10, 20)).to.be.true;
   });  */
 
-
   ////////////////////////////////////////////////////////////////////// SPY THE CALLBACK() METHOD
   it("Spy the callback() method", function() {
     var callback = sinon.spy();
     myObj.callTheCallback(callback);
-    expect(callback.calledOnce).to.be.true;
-  });
 
-  
+    expect(callback.calledOnce).to.be.true;
+    
+    console.log("callback() Called: ", Boolean(1));
+  });
 
   ////////////////////////////////////////////////////////////////////// MOCK THE SAYHELLO() METHOD
   it("mock the sayHello method", function() {
@@ -96,12 +93,10 @@ describe("Test Suite", function() {
     console.log("Mocked: ", expectation.withArgs("hello world"));
   });
 
-
-
   ////////////////////////////////////////////////////////////////////// STUB THE ADD() FUNCTION
   it("Stub the add() method", function() {
 
-    var stubHello = sinon.stub(myObj, "sayHello");
+    //ar stubHello = sinon.stub(myObj, "sayHello");
     stubHello.onFirstCall().returns(0).onSecondCall().returns(0);
 
     var stub = sinon.stub(myObj, "add");
@@ -114,9 +109,7 @@ describe("Test Suite", function() {
     
     stub.onSecondCall().returns(300);
     expect(myObj.callAnotherFn(10, 40)).to.be.equal(test2); //test2 = 300;
-    console.log("2nd Call: ", test2);
-    
-    
+    console.log("2nd Call: ", test2);  
   });
 
   ////////////////////////////////////////////////////////////////////// RUN THE PROMISE TEST CASE
@@ -128,4 +121,3 @@ describe("Test Suite", function() {
     });
   });
 });
-
