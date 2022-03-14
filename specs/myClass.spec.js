@@ -96,7 +96,7 @@ describe("Test Suite", function() {
   ////////////////////////////////////////////////////////////////////// STUB THE ADD() FUNCTION
   it("Stub the add() method", function() {
 
-    //ar stubHello = sinon.stub(myObj, "sayHello");
+    var stubHello = sinon.stub(myObj, "sayHello");
     stubHello.onFirstCall().returns(0).onSecondCall().returns(0);
 
     var stub = sinon.stub(myObj, "add");
