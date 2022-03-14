@@ -10,25 +10,29 @@ chai.use(chaiaspromise);
 describe("Test Suite", function() {
   after(function() {
     console.log("\n///////////////////////////////////////////////////////////////////////////////");
-    console.log("/                            After The Test Suite                             /");
+    console.log("/                           End of the Test Suite                             /");
     console.log("///////////////////////////////////////////////////////////////////////////////");
 
   });
   before(function() {
     console.log("///////////////////////////////////////////////////////////////////////////////");
-    console.log("/                            Before The Test Suite                            /");
+    console.log("/                           Start of the Test Suite                           /");
     console.log("///////////////////////////////////////////////////////////////////////////////");
 
   });
-  afterEach(function() {
-    console.log("");
-  });
   beforeEach(function() {
+    console.log("------------------------------------------");
+    console.log("                 UNIT TEST                ");
+    console.log("------------------------------------------");
     sinon.restore();
     
   });
+  afterEach(function() {
+    console.log("__________________________________________");
+  });
+  
 
-  // WHAT IS BEING TESTED
+  ////////////////////////////////////////////////////////////////////// TEST THE ADD() METHOD
   it("Test the add() method", function() {
     var actual = myObj.add(1, 2);
     var expected = 3;
@@ -39,6 +43,8 @@ describe("Test Suite", function() {
     console.log("Expect: ", expected);
   });
 
+
+  ////////////////////////////////////////////////////////////////////// SPY THE ADD() METHOD
   it("Spy the add() method", function() {
     var spy = sinon.spy(myObj, "add");
     var arg1 = 10, arg2 = 20;
@@ -66,6 +72,7 @@ describe("Test Suite", function() {
   });  */
 
 
+  ////////////////////////////////////////////////////////////////////// SPY THE CALLBACK() METHOD
   it("Spy the callback() method", function() {
     var callback = sinon.spy();
     myObj.callTheCallback(callback);
@@ -73,6 +80,8 @@ describe("Test Suite", function() {
   });
 
   
+
+  ////////////////////////////////////////////////////////////////////// MOCK THE SAYHELLO() METHOD
   it("mock the sayHello method", function() {
     var mock = sinon.mock(myObj);
     var expectation = mock.expects("sayHello");
@@ -86,12 +95,10 @@ describe("Test Suite", function() {
     console.log("Expected: ", expectation);
     console.log("Mocked: ", expectation.withArgs("hello world"));
   });
-});
 
 
 
-////////////////////////////// TEST SUITE /////////////////////////////////////
-describe("Test Suite For Stub", function() {
+  ////////////////////////////////////////////////////////////////////// STUB THE ADD() FUNCTION
   it("Stub the add() method", function() {
 
     var stubHello = sinon.stub(myObj, "sayHello");
@@ -102,7 +109,7 @@ describe("Test Suite For Stub", function() {
     var test2 = 300;
 
     stub.onFirstCall().returns(500);
-    expect(myObj.callAnotherFn(10, 20)).to.be.equal(test1); //test1 = 500;
+    expect(myObj.callAnotherFn(10, 40)).to.be.equal(test1); //test1 = 500;
     console.log("1st Call: ", test1); 
     
     stub.onSecondCall().returns(300);
@@ -111,9 +118,8 @@ describe("Test Suite For Stub", function() {
     
     
   });
-});
 
-describe("\n Test the Promise", function() {
+  ////////////////////////////////////////////////////////////////////// RUN THE PROMISE TEST CASE
   it("Promise Test Case", function(done) {
     this.timeout(0);
     myObj.testPromise().then(function(result) {
@@ -122,3 +128,4 @@ describe("\n Test the Promise", function() {
     });
   });
 });
+
