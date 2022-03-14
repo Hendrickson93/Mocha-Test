@@ -53,7 +53,7 @@ describe("Test Suite", function() {
   });
 
 
-   it("Copy of spy for the add() method", function() {
+   /* it("Copy of spy for the add() method", function() {
     // This test will fail in case sinon.restore() is not called
     var spy = sinon.spy(myObj, "add");
     var arg1 = 10, arg2 = 20;
@@ -63,7 +63,7 @@ describe("Test Suite", function() {
     //sinon.assert.calledTwice(spy);
     expect(spy.calledOnce).to.be.true;
     expect(spy.calledWith(10, 20)).to.be.true;
-  }); 
+  });  */
 
 
   it("Spy the callback() method", function() {
@@ -94,16 +94,22 @@ describe("Test Suite", function() {
 describe("Test Suite For Stub", function() {
   it("Stub the add() method", function() {
 
-    var stub = sinon.stub(myObj, "add");
+    var stubHello = sinon.stub(myObj, "sayHello");
+    stubHello.onFirstCall().returns(0).onSecondCall().returns(0);
 
-    stub
-      .onFirstCall().returns(500)
-      .onSecondCall().returns(200);
+    var stub = sinon.stub(myObj, "add");
+    var test1 = 500;
+    var test2 = 300;
+
+    stub.onFirstCall().returns(500);
+    expect(myObj.callAnotherFn(10, 20)).to.be.equal(test1); //test1 = 500;
+    console.log("1st Call: ", test1); 
+    
+    stub.onSecondCall().returns(300);
+    expect(myObj.callAnotherFn(10, 40)).to.be.equal(test2); //test2 = 300;
+    console.log("2nd Call: ", test2);
     
     
-    console.log("1st Call: ", expect(myObj.callAnotherFn(10, 20)).to.be.equal(500));
-    
-    console.log("2nd Call: ", expect(myObj.callAnotherFn(10, 20)).to.be.equal(200));
   });
 });
 
