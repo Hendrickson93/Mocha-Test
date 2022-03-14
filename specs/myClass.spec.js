@@ -75,16 +75,16 @@ describe("Test Suite", function() {
   
   it("mock the sayHello method", function() {
     var mock = sinon.mock(myObj);
-    var expetcation = mock.expects("sayHello");
+    var expectation = mock.expects("sayHello");
     
-    expetcation.exactly(1);
-    expetcation.withArgs("hello world");
+    expectation.exactly(1);
+    expectation.withArgs("hello world");
     
     myObj.callAnotherFn(10, 20);
     mock.verify();
 
-    console.log("Expected: ", expetcation);
-    console.log("Mocked: ", expetcation.withArgs("hello world"));
+    console.log("Expected: ", expectation);
+    console.log("Mocked: ", expectation.withArgs("hello world"));
   });
 });
 
