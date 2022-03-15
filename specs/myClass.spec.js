@@ -70,11 +70,14 @@ describe("Test Suite", function() {
 
   ////////////////////////////////////////////////////////////////////// SPY THE CALLBACK() METHOD
   it("Spy the callback() method", function() {
+    
     var callback = sinon.spy();
+    
     myObj.callTheCallback(callback);
 
     expect(callback.calledOnce).to.be.true;
     
+    //Displays 'true' if the callback() is called 
     console.log("callback() Called: ", Boolean(1));
   });
 
