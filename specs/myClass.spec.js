@@ -34,7 +34,7 @@ describe("Test Suite", function() {
 
   ////////////////////////////////////////////////////////////////////// TEST THE ADD() METHOD
   it("Test the add() method", function() {
-    //
+    
     var actual = myObj.add(1, 2); // actual = 3
     var expected = 3;
     
@@ -97,13 +97,14 @@ describe("Test Suite", function() {
     //with 'hello world' as an arguement
     expectation.withArgs("hello world"); 
     
-    //'callAnotherFn()' is used to call the sayHello() method 
-    myObj.callAnotherFn(10, 20);
+    //callAnotherFn() is used to call the sayHello() method
+    //sayHello() is nested inside of callAnotherFn() 
+    myObj.callAnotherFn(10, 20);  
     
     //Verifies all expectations on the mock have passed
     mock.verify();                
 
-    // Displays the expectation of the mock function
+    //Displays the expectation of the mock function
     console.log("Mocked: ", expectation);
   });
 
