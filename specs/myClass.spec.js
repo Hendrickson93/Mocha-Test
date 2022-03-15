@@ -34,12 +34,13 @@ describe("Test Suite", function() {
 
   ////////////////////////////////////////////////////////////////////// TEST THE ADD() METHOD
   it("Test the add() method", function() {
-    
     var actual = myObj.add(1, 2); // actual = 3
     var expected = 3;
     
+    // self-explanatory
     expect(actual).to.be.equal(expected);
     
+    // dispaly actual and expected results
     console.log("Actual: ", actual);
     console.log("Expect: ", expected);
   });
@@ -51,11 +52,13 @@ describe("Test Suite", function() {
     var stubHello = sinon.stub(myObj, "sayHello");
     stubHello.onCall().returns(0);
     
-    // spy the add() method with args (10, 20)
+    // creates a spy object for 'add' and returns it
     var spy = sinon.spy(myObj, "add");
-    var arg1 = 10, arg2 = 20;    
+     
+    // create arguments
+    var arg1 = 10, arg2 = 20;  
 
-    // calls 'myObj.callAnotherFn(arg1, arg2)' and stores it in 'result' variable
+    // calls myObj.callAnotherFn(arg1, arg2) and assigns return to 'result'
     var result = myObj.callAnotherFn(arg1, arg2);
     
     //sinon.assert.calledTwice(spy);
@@ -86,8 +89,8 @@ describe("Test Suite", function() {
   ////////////////////////////////////////////////////////////////////// MOCK THE SAYHELLO() METHOD
   it("mock the sayHello() method", function() {
     
-    //Creates a mock for 'myObj' 
-    //Does NOT change the object, but returns a mock object
+    /*Creates a mock for 'myObj' 
+    Does NOT change the object, but returns a mock object */
     var mock = sinon.mock(myObj);
 
     //Overrides 'sayHello()' with a mock function 
@@ -96,11 +99,11 @@ describe("Test Suite", function() {
     //Expects mock function to be called EXACTLY ONCE
     expectation.exactly(1);
     
-    //with 'hello world' as an arguement
+    //Expects mock function with 'hello world' as an arguement
     expectation.withArgs("hello world"); 
-    
-    //we call sayHello() indirectly using callAnotherFn() 
-    //since sayHello() is nested inside of callAnotherFn()
+        
+    /*we call sayHello() indirectly using callAnotherFn() 
+    since sayHello() is nested inside of callAnotherFn()*/
     myObj.callAnotherFn(10, 20);  
     
     //Verifies all expectations on the mock have passed
@@ -108,6 +111,7 @@ describe("Test Suite", function() {
 
     //Displays the expectation of the mock function
     console.log("Mocked: ", expectation);
+
   });
 
   ////////////////////////////////////////////////////////////////////// STUB THE ADD() FUNCTION
