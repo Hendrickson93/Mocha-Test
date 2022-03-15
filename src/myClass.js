@@ -1,5 +1,3 @@
-//var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-
 class MyClass {
   constructor() {
     console.log("initiate");

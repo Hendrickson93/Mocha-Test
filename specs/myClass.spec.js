@@ -34,7 +34,8 @@ describe("Test Suite", function() {
 
   ////////////////////////////////////////////////////////////////////// TEST THE ADD() METHOD
   it("Test the add() method", function() {
-    var actual = myObj.add(1, 2);
+    //
+    var actual = myObj.add(1, 2); // actual = 3
     var expected = 3;
     
     expect(actual).to.be.equal(expected);
@@ -45,28 +46,27 @@ describe("Test Suite", function() {
 
   ////////////////////////////////////////////////////////////////////// SPY THE ADD() METHOD
   it("Spy the add() method", function() {
-    var spy = sinon.spy(myObj, "add");
-    var arg1 = 10, arg2 = 20;
 
+    // Prevents the sayHello() method from being returned 
+    var stubHello = sinon.stub(myObj, "sayHello");
+    stubHello.onCall().returns(0);
+    
+    // spy the add() method with args (10, 20)
+    var spy = sinon.spy(myObj, "add");
+    var arg1 = 10, arg2 = 20;    
+
+    // calls 'myObj.callAnotherFn(arg1, arg2)' and stores it in 'result' variable
     var result = myObj.callAnotherFn(arg1, arg2);
     
     //sinon.assert.calledTwice(spy);
-    expect(spy.calledOnce).to.be.true;
-    expect(spy.calledWith(10, 20)).to.be.true;
+    expect(spy.calledOnce).to.be.true;            // expects add() to be called ONCE
+    expect(spy.calledWith(10, 20)).to.be.true;    // expects add(10, 20) to be called
+
+    // displays the resulting value
     console.log("Result: ", result);
   });
 
-   /* it("Copy of spy for the add() method", function() {
-    // This test will fail in case sinon.restore() is not called
-    var spy = sinon.spy(myObj, "add");
-    var arg1 = 10, arg2 = 20;
-   
-    myObj.callAnotherFn(arg1, arg2);
-   
-    //sinon.assert.calledTwice(spy);
-    expect(spy.calledOnce).to.be.true;
-    expect(spy.calledWith(10, 20)).to.be.true;
-  });  */
+
 
   ////////////////////////////////////////////////////////////////////// SPY THE CALLBACK() METHOD
   it("Spy the callback() method", function() {
@@ -78,18 +78,32 @@ describe("Test Suite", function() {
     console.log("callback() Called: ", Boolean(1));
   });
 
+
+
   ////////////////////////////////////////////////////////////////////// MOCK THE SAYHELLO() METHOD
   it("mock the sayHello() method", function() {
+    
+    //Creates a mock for 'myObj' 
+    //Does NOT change the object, but returns a mock object
     var mock = sinon.mock(myObj);
-    var expectation = mock.expects("sayHello");
-    
-    expectation.exactly(1);
-    expectation.withArgs("hello world");
-    
-    myObj.callAnotherFn(10, 20);
-    mock.verify();
 
-    // Expects sayHello(helo world[, ...]) once (never called)
+    //Overrides obj.method with a mock function 
+    //and returns it to 'expectation' variable.
+    var expectation = mock.expects("sayHello"); 
+    
+    //Expects mock function to be called EXACTLY ONCE
+    expectation.exactly(1);
+    
+    //with 'hello world' as an arguement
+    expectation.withArgs("hello world"); 
+    
+    //'callAnotherFn()' is used to call the sayHello() method 
+    myObj.callAnotherFn(10, 20);
+    
+    //Verifies all expectations on the mock have passed
+    mock.verify();                
+
+    // Displays the expectation of the mock function
     console.log("Mocked: ", expectation);
   });
 
