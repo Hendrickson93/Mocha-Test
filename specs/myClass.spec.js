@@ -90,8 +90,7 @@ describe("Test Suite", function() {
     //Does NOT change the object, but returns a mock object
     var mock = sinon.mock(myObj);
 
-    //Overrides obj.method with a mock function 
-    //and returns it to 'expectation' variable.
+    //Overrides 'sayHello()' with a mock function 
     var expectation = mock.expects("sayHello"); 
     
     //Expects mock function to be called EXACTLY ONCE
@@ -100,8 +99,8 @@ describe("Test Suite", function() {
     //with 'hello world' as an arguement
     expectation.withArgs("hello world"); 
     
-    //callAnotherFn() is used to call the sayHello() method
-    //sayHello() is nested inside of callAnotherFn() 
+    //we call sayHello() indirectly using callAnotherFn() 
+    //since sayHello() is nested inside of callAnotherFn()
     myObj.callAnotherFn(10, 20);  
     
     //Verifies all expectations on the mock have passed
