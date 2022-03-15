@@ -79,7 +79,7 @@ describe("Test Suite", function() {
   });
 
   ////////////////////////////////////////////////////////////////////// MOCK THE SAYHELLO() METHOD
-  it("mock the sayHello method", function() {
+  it("mock the sayHello() method", function() {
     var mock = sinon.mock(myObj);
     var expectation = mock.expects("sayHello");
     
@@ -89,8 +89,8 @@ describe("Test Suite", function() {
     myObj.callAnotherFn(10, 20);
     mock.verify();
 
-    console.log("Expected: ", expectation);
-    console.log("Mocked: ", expectation.withArgs("hello world"));
+    // Expects sayHello(helo world[, ...]) once (never called)
+    console.log("Mocked: ", expectation);
   });
 
   ////////////////////////////////////////////////////////////////////// STUB THE ADD() FUNCTION
