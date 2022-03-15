@@ -8,26 +8,26 @@ chai.use(chaiaspromise);
 
 
 describe("Test Suite", function() {
-  after(function() { // after() hook
-    console.log("\n///////////////////////////////////////////////////////////////////////////////");
-    console.log("/                           End of the Test Suite                             /");
-    console.log("///////////////////////////////////////////////////////////////////////////////");
-
-  });
-  before(function() { // before() hook
+  before(function() { // runs once before the first test of the Test Suite
     console.log("///////////////////////////////////////////////////////////////////////////////");
     console.log("/                           Start of the Test Suite                           /");
     console.log("///////////////////////////////////////////////////////////////////////////////");
-
   });
-  beforeEach(function() { //beforeEach() hook
+
+  after(function() { // runs once after the last test of the Test Suite
+    console.log("\n///////////////////////////////////////////////////////////////////////////////");
+    console.log("/                           End of the Test Suite                             /");
+    console.log("///////////////////////////////////////////////////////////////////////////////");
+  });
+
+  beforeEach(function() { // runs before each test in the Test Suite
     console.log("------------------------------------------");
     console.log("                 UNIT TEST                ");
     console.log("------------------------------------------");
-    sinon.restore();
-    
+    sinon.restore(); 
   });
-  afterEach(function() { //afterEach() hook
+
+  afterEach(function() { // runs after each test the Test Suite
     console.log("__________________________________________");
   });
   
