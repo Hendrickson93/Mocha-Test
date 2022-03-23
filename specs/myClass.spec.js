@@ -7,6 +7,7 @@ const chaiaspromise = require("chai-as-promised");
 chai.use(chaiaspromise);
 
 
+// The describe() function is a way to group tests in Mocha.js. 
 describe("Test Suite", function() {
   before(function() { // runs once before the first test of the Test Suite
     console.log("///////////////////////////////////////////////////////////////////////////////");
@@ -45,6 +46,7 @@ describe("Test Suite", function() {
     console.log("Expect: ", expected);
   });
 
+
   ////////////////////////////////////////////////////////////////////// SPY THE ADD() METHOD
   it("Spy the add() method", function() {
 
@@ -68,23 +70,6 @@ describe("Test Suite", function() {
     // displays the resulting value
     console.log("Result: ", result);
   });
-
-
-
-  ////////////////////////////////////////////////////////////////////// SPY THE CALLBACK() METHOD
-  it("Spy the callback() method", function() {
-    
-    var callback = sinon.spy();
-    
-    myObj.callTheCallback(callback);
-
-    expect(callback.calledOnce).to.be.true;
-    
-    //Displays 'true' if the callback() is called 
-    console.log("callback() Called: ", Boolean(1));
-  });
-
-
 
   ////////////////////////////////////////////////////////////////////// MOCK THE SAYHELLO() METHOD
   it("mock the sayHello() method", function() {
@@ -114,6 +99,7 @@ describe("Test Suite", function() {
 
   });
 
+
   ////////////////////////////////////////////////////////////////////// STUB THE ADD() FUNCTION
   it("Stub the add() method", function() {
 
@@ -132,6 +118,7 @@ describe("Test Suite", function() {
     expect(myObj.callAnotherFn(10, 40)).to.be.equal(test2); //test2 = 300;
     console.log("2nd Call: ", test2);  
   });
+
 
   ////////////////////////////////////////////////////////////////////// RUN THE PROMISE TEST CASE
   it("Promise Test Case", function(done) {
